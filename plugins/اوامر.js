@@ -32,7 +32,7 @@ let handler = async (m, { conn }) => {
     }, { quoted: m });
 };
 
-handler.command = ['menu', 'help', 'h', 'اوامر', 'مهام', 'الاوامر', 'المهام'];
+handler.command = ['menu' ,'اوامر', 'الاوامر'];
 
 export default handler;
 

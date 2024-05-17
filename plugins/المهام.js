@@ -30,7 +30,7 @@ onst name = conn.getName(m.sender);
     }, { quoted: m });
 };
 
-handler.command = ['menu' ,'اوامر', 'الاوامر'];
+handler.command = ['مهام', 'المهام'];
 
 export default handler;
 

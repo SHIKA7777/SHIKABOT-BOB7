@@ -9,17 +9,21 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     }
     let src = await (await fetch('https://raw.githubusercontent.com/uraharapp/3mk-urahara/main/URAHARA-3MK.JSON')).json()
   let json = src[Math.floor(Math.random() * src.length)]
-    let caption = `*${command.toUpperCase()}*
-  ❐↞┇الـوقـت⏳↞ *${(timeout / 1000).toFixed(2)} ┇
+    let caption = `*· • • ━━ ⌝🐉⌞ ━━ • • ·*
+*${command.toUpperCase()}*
+*🜋↫╎السـؤال ✍🏻⇜『من الاعب ال بالصورة』*
+  *🜋↫╎الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)} ┇*
   *استخدم .انسحب للأنسحاب*
-  ❐↞┇الـجـائـزة💰↞ ${poin} نقاط┇
-‌⎔ ━ • 𓆩♕𝙎𝙃𝙄𝙆𝘼🐥ᵇᵒᵗ♕𓆪• ━ ⎔
+  *🜋↫╎الـجـائزة💰↞ ${poin} نقاط┇*
+∞┇━━━ •🐉• ━━━┇∞
+*✠ ~تــ✍︎ــوقــيــع ↯:~*
+『𝐂𝐋𝐎𝐔𝐃𓆩☁️𓆪𝐊𝐈𝐍𝐆𝐃𝐎𝐌』
      `.trim()
     conn.tebakbendera[id] = [
-        await conn.sendFile(m.chat, json.question, '', caption, m),
+        await conn.sendFile(m.chat, json.img, '', caption, m),
         json, poin,
         setTimeout(() => {
-            if (conn.tebakbendera[id]) conn.reply(m.chat, `❮ ⌛┇انتهي الوقت┇⌛❯\n❐↞┇الاجـابـة✅↞ ${json.response}*┇`, conn.tebakbendera[id][0])
+            if (conn.tebakbendera[id]) conn.reply(m.chat, `❮ ⌛┇انتهي الوقت┇⌛❯\n❐↞┇الاجـابـة✅↞ *${json.name}* ┇`, conn.tebakbendera[id][0])
             delete conn.tebakbendera[id]
         }, timeout)
     ]
@@ -28,4 +32,4 @@ handler.help = ['guessflag']
 handler.tags = ['game']
 handler.command = /^كوره/i
 
-export default handler
+export default handler 

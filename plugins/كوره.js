@@ -9,15 +9,15 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     }
     let src = await (await fetch('https://raw.githubusercontent.com/uraharapp/3mk-urahara/main/URAHARA-3MK.JSON')).json()
   let json = src[Math.floor(Math.random() * src.length)]
-    let caption = `*· • • ━━ ⌝🐉⌞ ━━ • • ·*
+    let caption = `*· • • ━━ ⌝⚜️⌞ ━━ • • ·*
 *${command.toUpperCase()}*
 *🜋↫╎السـؤال ✍🏻⇜『من الاعب ال بالصورة』*
   *🜋↫╎الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)} ┇*
   *استخدم .انسحب للأنسحاب*
   *🜋↫╎الـجـائزة💰↞ ${poin} نقاط┇*
-∞┇━━━ •🐉• ━━━┇∞
+∞┇━━━ •⚜️• ━━━┇∞
 *✠ ~تــ✍︎ــوقــيــع ↯:~*
-『𝐂𝐋𝐎𝐔𝐃𓆩☁️𓆪𝐊𝐈𝐍𝐆𝐃𝐎𝐌』
+『⚜️𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌⚜️』
      `.trim()
     conn.tebakbendera[id] = [
         await conn.sendFile(m.chat, json.img, '', caption, m),

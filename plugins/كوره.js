@@ -70,6 +70,23 @@ let handler = async (m, { conn, command, usedPrefix }) => {
         }, timeout)
     ];
 }
+
+// التعامل مع الردود من المستخدمين
+handler.before = async (m, { conn }) => {
+    if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys) return !0
+    let id = m.chat
+    if (!(id in conn.tebakbendera)) return !0
+    let json = conn.tebakbendera[id][1]
+    if (m.text.toLowerCase() == json.response.toLowerCase()) {
+        conn.reply(m.chat, `🎉 مبروك! الإجابة صحيحة! لقد حصلت على ${conn.tebakbendera[id][2]} نقاط.`, m)
+        clearTimeout(conn.tebakbendera[id][3])
+        delete conn.tebakbendera[id]
+    } else {
+        conn.reply(m.chat, `❌ الإجابة خاطئة. حاول مرة أخرى!`, m)
+    }
+    return !1
+}
+
 handler.help = ['guessflag']
 handler.tags = ['game']
 handler.command = /^كوره/i

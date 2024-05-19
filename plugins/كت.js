@@ -7,7 +7,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.tekateki = conn.tekateki ? conn.tekateki : {};
     let id = m.chat;
     if (id in conn.tekateki) {
-        conn.reply(m.chat, '*❆━━━═⏣⊰🦇⊱⏣═━━━❆*\n\n*لم يتم الاجابة على السؤال بعد*\n\n*❆━━━═⏣⊰🦇⊱⏣═━━━❆*', conn.tekateki[id][0]);
+        conn.reply(m.chat, '*┇• ━ ━━•┇『🔱』┇•━━ ━ •┇*\n\n*لم يتم الاجابة على السؤال بعد*\n\n*┇• ━ ━━•┇『🔱』┇•━━ ━ •┇*', conn.tekateki[id][0]);
         throw false;
     }
     let tekateki = JSON.parse(fs.readFileSync(`./src/game/كت.json`));
@@ -15,7 +15,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let _clue = json.response;
     let clue = _clue.replace(/[A-Za-z]/g, ''); // Fixed this line
     let caption = `
-    *❆━━━═⏣⊰🦇⊱⏣═━━━❆*
+    *┇• ━ ━━•┇『🔱』┇•━━ ━ •┇*
     
 *${json.question}*
 
@@ -23,7 +23,9 @@ let handler = async (m, { conn, usedPrefix }) => {
 
 > *الـجـائزة💰↞ ${poin} نقاط*
 
-*❆━━━═⏣⊰🦇⊱⏣═━━━❆*
+*———————————————*
+
+┇━━𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪━━ ┇
 `.trim();
     conn.tekateki[id] = [
        await conn.reply(m.chat, caption, m),

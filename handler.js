@@ -542,7 +542,7 @@ export async function handler(chatUpdate) {
           bank: 0,
           banned: false,
           BannedReason: '',
-          Banneduser: false,
+          Banneduser: true,
           banteng: 0,
           batu: 0,
           bawal: 0,
@@ -934,7 +934,7 @@ export async function handler(chatUpdate) {
         if (!('isBanned' in chat)) chat.isBanned = false;
         if (!('welcome' in chat)) chat.welcome = true;
         if (!('detect' in chat)) chat.detect = true;
-        if (!('detect2' in chat)) chat.detect2 = false;
+        if (!('detect2' in chat)) chat.detect2 = true;
         if (!('sWelcome' in chat)) chat.sWelcome = '';
         if (!('sBye' in chat)) chat.sBye = '';
         if (!('sPromote' in chat)) chat.sPromote = '';

@@ -3,7 +3,8 @@ import fs from 'fs'
 let timeout = 60000
 let poin = 500
 
-let videoUrl = 'https://telegra.ph/file/18db853002c9bd7be317c.mp4   
+let videoUrl = 'https://telegra.ph/file/22d74a6acd0261e36d1de.jpg   
+    
 let handler = async (m, { conn, usedPrefix }) => {
     conn.tekateki = conn.tekateki ? conn.tekateki : {}
     let id = m.chat

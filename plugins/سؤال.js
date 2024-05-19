@@ -1,6 +1,5 @@
 import fs from 'fs'
 
-let videoUrl = 'https://telegra.ph/file/22d74a6acd0261e36d1de.jpg
 let timeout = 60000
 let poin = 500   
     
@@ -17,8 +16,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let clue = _clue.replace(/[A-Za-z]/g, '_')
     let caption = `
 ⷮ *${json.question}*
-
-${videoUrl} 
+conn.reply(m.chat, 'https://telegra.ph/file/22d74a6acd0261e36d1de.jpg)',
 *الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)}*
 *الـجـائـزة💰↞ ${poin} نقاط*
 ‌𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪

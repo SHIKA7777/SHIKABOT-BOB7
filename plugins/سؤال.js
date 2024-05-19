@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 ${videoUrl} 
 *الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)}*
 *الـجـائـزة💰↞ ${poin} نقاط*
-‌⎔ ━ • 𓆩♕𝙎𝙃𝙄𝙆𝘼🐥ᵇᵒᵗ♕𓆪• ━ ⎔
+‌𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪
 `.trim()
     conn.tekateki[id] = [
        await conn.reply(m.chat, caption, m),

@@ -1,5 +1,5 @@
 let handler  = async (m, { conn }) => {
-conn.reply(m.chat,`*┌────「 🦦سؤال 」─*\n*“${pickRandom(global.bucin)}”*\n*└────「 ♕𝙎𝙃𝙄𝙆𝘼🐥ᵇᵒᵗ♕ 」─*`, m)
+conn.reply(m.chat,`*┌────「 🦦سؤال 」─*\n*“${pickRandom(global.bucin)}”*\n*└──── *「𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪」 *─*`, m)
 }
 handler.help = ['reto']
 handler.tags = ['fun']

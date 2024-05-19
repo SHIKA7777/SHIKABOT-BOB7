@@ -14,9 +14,10 @@ let handler = async (m, { conn, usedPrefix }) => {
     let json = tekateki[Math.floor(Math.random() * tekateki.length)]
     let _clue = json.response
     let clue = _clue.replace(/[A-Za-z]/g, '_')
+    conn.reply(m.chat, 'https://telegra.ph/file/22d74a6acd0261e36d1de.jpg)',
     let caption = `
 ⷮ *${json.question}*
-conn.reply(m.chat, 'https://telegra.ph/file/22d74a6acd0261e36d1de.jpg)',
+
 *الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)}*
 *الـجـائـزة💰↞ ${poin} نقاط*
 ‌𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪

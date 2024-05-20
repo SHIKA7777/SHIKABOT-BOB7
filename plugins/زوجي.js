@@ -17,6 +17,6 @@ mentions: [a, b]
 })}
 handler.help = ['formarpareja']
 handler.tags = ['main', 'fun']
-handler.command = ['زوجي'|'زوجتي']
+handler.command = ['زوجي','زوجتي']
 handler.group = true
 export default handler

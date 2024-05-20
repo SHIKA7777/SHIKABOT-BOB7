@@ -1,31 +1,38 @@
+import fs from 'fs'
+
 let timeout = 60000
 let poin = 500
-let handler = async (m, { conn, command, usedPrefix }) => {
-    conn.tebakbendera = conn.tebakbendera ? conn.tebakbendera : {}
+
+let handler = async (m, { conn, usedPrefix }) => {
+    conn.tekateki = conn.tekateki ? conn.tekateki : {}
     let id = m.chat
-    if (id in conn.tebakbendera) {
-        conn.reply(m.chat, '❐┃لم يتم الاجابة علي السؤال بعد┃❌ ❯', conn.tebakbendera[id][0])
+    if (id in conn.tekateki) {
+        conn.reply(m.chat, '❐┃لم يتم الاجابة علي السؤال بعد┃❌ ❯', conn.tekateki[id][0])
         throw false
     }
-    let src = await (await fetch('https://gist.githubusercontent.com/SHIKA7777/d13e2dda72eeca8267f830e27cd77184/raw')).json()
-  let json = src[Math.floor(Math.random() * src.length)]
-    let caption = `*╭━━━[ *${command.toUpperCase()}* ]━━━━⬣
-┃❐↞┇الـوقـت⏳↞ *${(timeout / 1000).toFixed(2)} ┇
- *لو مش عارف الاجابه قول استخدم.معرفش*
-  ❐↞┇الـجـائـزة💰↞ ${poin} نقاط┇
-『𝐬𝐚𝐬𝐮𝐤𝐞 𝐛𝐨𝐭 🩸』
-     `.trim()
-    conn.tebakbendera[id] = [
-        await conn.sendFile(m.chat, json.img, '', caption, m),
+    let tekateki = JSON.parse(fs.readFileSync(`./src/game/علم.json`))
+    let json = tekateki[Math.floor(Math.random() * tekateki.length)]
+    let _clue = json.response
+    let clue = _clue.replace(/[A-Za-z]/g, '_')
+    let caption = `
+ⷮ *${json.question}*
+
+*الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)}*
+*الـجـائـزة💰↞ ${poin} نقاط*
+*𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪*
+`.trim()
+    conn.tekateki[id] = [
+       await conn.reply(m.chat, caption, m),
         json, poin,
-        setTimeout(() => {
-            if (conn.tebakbendera[id]) conn.reply(m.chat, `❮ ⌛┇انتهي الوقت┇⌛❯\n❐↞┇الاجـابـة✅↞ ${json.name}*┇`, conn.tebakbendera[id][0])
-            delete conn.tebakbendera[id]
+        setTimeout(async () => {
+            if (conn.tekateki[id]) await conn.reply(m.chat, `*⌛انتهي الوقت⌛*\n *الاجـابـة✅ ${json.response}*`, conn.tekateki[id][0])
+            delete conn.tekateki[id]
         }, timeout)
     ]
 }
-handler.help = ['guessflag']
+
+handler.help = ['acertijo']
 handler.tags = ['game']
-handler.command = /^علم/i
+handler.command = /^(علم)$/i
 
 export default handler

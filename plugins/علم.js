@@ -9,11 +9,11 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     }
     let src = await (await fetch('https://raw.githubusercontent.com/mohamedkun15/TheMystic-Bot-MD/master/src/JSON/Flag.json')).json()
   let json = src[Math.floor(Math.random() * src.length)]
-    let caption = `*┇ ${command.toUpperCase()} ┇*
-┃❐↞┇الـوقـت⏳↞ *${(timeout / 1000).toFixed(2)} ┇*
+    let caption = `*╭━━━[ *${command.toUpperCase()}* ]━━━━⬣
+┃❐↞┇الـوقـت⏳↞ *${(timeout / 1000).toFixed(2)} ┇
  *لو مش عارف الاجابه قول استخدم.معرفش*
   ❐↞┇الـجـائـزة💰↞ ${poin} نقاط┇
-> 𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪
+『𝐬𝐚𝐬𝐮𝐤𝐞 𝐛𝐨𝐭 🩸』
      `.trim()
     conn.tebakbendera[id] = [
         await conn.sendFile(m.chat, json.img, '', caption, m),

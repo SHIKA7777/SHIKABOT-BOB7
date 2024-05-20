@@ -7,7 +7,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
         conn.reply(m.chat, '❐┃لم يتم الاجابة علي السؤال بعد┃❌ ❯', conn.tebakbendera[id][0])
         throw false
     }
-    let src = await (await fetch('./src/game/علم.json')).json()
+    let src = JSON.parse(fs.readFileSync(`./src/game/علم.json')).json()
   let json = src[Math.floor(Math.random() * src.length)]
     let caption = `*${command.toUpperCase()}*
 * ❐↞┇الـوقـت⏳↞ ${(timeout / 1000).toFixed(2)} ┇*
@@ -26,6 +26,6 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 }
 handler.help = ['guessflag']
 handler.tags = ['game']
-handler.command = /^احزر/i
+handler.command = /^علم/i
 
 export default handler

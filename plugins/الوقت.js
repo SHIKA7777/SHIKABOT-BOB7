@@ -7,14 +7,15 @@ let wib = moment.tz('Africa/casablanca').format('HH:mm:ss')
   let month = date.getMonth() + 1;
   let day = date.getDate();
   
-  let clockString = `تاريخ اليوم : ${day}/${month}/${year}\n الساعة تشير لــ  : ${wib}`;
+  let clockString = `تاريخ اليوم🗓 : ${day}/${month}/${year}\n الساعة⌚  : ${wib}`;
   
-  // Mengirimkan hasil ke grup atau 
+await conn.sendMessage(m.chat, { react: { text: '⏱️', key: m.key } })
+    // Mengirimkan hasil ke grup atau 
   conn.reply(m.chat, clockString, m);
 }
 
 handler.help = ['clock'];
 handler.tags = ['tools'];
-handler.command = /^(clock)$/i;
+handler.command = /^(الوقت)$/i;
 
 export default handler;

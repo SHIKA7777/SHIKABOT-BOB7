@@ -17,7 +17,7 @@ let handler = async (m, { conn, command }) => {
     let id = m.chat;
     conn.itachixvi = conn.itachixvi ? conn.itachixvi : {};
 //شرط بدا اللعبه هنبدا هنا تمام
-    if (command === "مسابقه-صور") {
+    if (command === "2مسابقه-صور") {
         if (id in conn.itachixvi) {
             conn.reply(m.chat, '*المسابقه شغاله حالياً يمكنك المشاركه*', conn.itachixvi[id][0]);
             throw false;
@@ -30,7 +30,7 @@ let handler = async (m, { conn, command }) => {
         conn.reply(m.chat, '*المسابقه تم تفعيلها استخدم .انضم-صور للانضمام للمسابقه*', m);
         throw false;
       //زرار الانضمام
-    } else if (command === "انضم-صور") {
+    } else if (command === "2انضم-صور") {
         if (!(id in conn.itachixvi)) {
             conn.reply(m.chat, '*المعذره لايوجد مسابقه حالياً*', m);
             throw false;
@@ -81,7 +81,7 @@ let handler = async (m, { conn, command }) => {
                 }, 1000); 
             }, questionTimeout);
         }//شرط الحذق
-    } else if (command === "حذف-صور") {
+    } else if (command === "2حذف-صور") {
         if (!conn.itachixvi[id]) {
             conn.reply(m.chat, '*لا يوجد احد قام بتشغيل المسابقه*', m);
         } else {
@@ -150,6 +150,6 @@ handler.before = async function (m, { conn }) {
         }
     }
 };
-handler.command = /^(مسابقه-صور|انضم-صور|حذف-صور)$/i;
+handler.command = /^(2مسابقه-صور2|انضم-صور2|حذف-صور)$/i;
 
 export default handler;

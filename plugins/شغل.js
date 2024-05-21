@@ -11,13 +11,14 @@ const streamPipeline = promisify(pipeline);
 var handler = async (m, { conn, command, text, usedPrefix }) => {
   if (!text) throw `*${usedPrefix}${command} صااارت خمسـه صاارت خمسـه لبرشلـووونه🐥*`;
 
+await conn.sendMessage(m.chat, { react: { text: '🎧', key: m.key } })  
   let search = await yts(text);
   let vid = search.videos[Math.floor(Math.random() * search.videos.length)];
   if (!search) throw 'Video Not Found, Try Another Title';
   let { title, thumbnail, timestamp, views, ago, url } = vid;
   let wm = 'Downloading audio please wait';
 
-  let captvid = `‌‌       *╭──⚜️𝐖.𝐒.𝐙🔱𝐁𝐎𝐓⚜️──╮*
+  let captvid = `‌‌*‌╭──* ⚜️𝐖.𝐒.𝐙🔱𝐁𝐎𝐓⚜️ *──╮*
 *ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ*
 > ⚜️𝐖.𝐒.𝐙🎧𝐒𝐎𝐍𝐆⚜️
 *ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ*

@@ -18,9 +18,9 @@ await conn.sendMessage(m.chat, { react: { text: '🎧', key: m.key } })
   let { title, thumbnail, timestamp, views, ago, url } = vid;
   let wm = 'Downloading audio please wait';
 
-  let captvid = `‌‌*╭──* ⚜️𝐖.𝐒.𝐙🔱𝐁𝐎𝐓⚜️ *──╮*
+  let captvid = `‌‌ *╭──* ⚜️𝐖.𝐒.𝐙🔱𝐁𝐎𝐓⚜️ *──╮*
 *ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ*
-> ⚜️𝐖.𝐒.𝐙🎧𝐒𝐎𝐍𝐆⚜️
+ 🪩𝐖.𝐒.𝐙🎧𝐒𝐎𝐍𝐆🪩
 *ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ*
  *┇🪪┇ الاســم: 『 ${title} 』*
 *——————————————*

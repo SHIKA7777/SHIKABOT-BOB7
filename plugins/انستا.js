@@ -1,43 +1,27 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, args, command, text }) => {
-  if (!text) throw `You need to give the URL of Any Instagram video, post, reel, image`;
-  m.reply(wait);
+  if (!text) throw `*أعــطيـني رابــــط !*`;
 
   let res;
   try {
-    res = await fetch(`${gurubot}/igdlv1?url=${text}`);
+    res = await fetch(`https://inrl-web.onrender.com/api/insta?url=${text}`);
   } catch (error) {
-    throw `An error occurred: ${error.message}`;
+    throw `*حـدث خــطأ !:* ${error.message}`;
   }
 
   let api_response = await res.json();
-
-  if (!api_response || !api_response.data) {
-    throw `No video or image found or Invalid response from API.`;
+  if (!api_response || !api_response.result || api_response.result.length === 0) {
+    throw `*لــم اجـد الـفيديــو !!*`;
   }
 
-  const mediaArray = api_response.data;
+  let cap = `*الـفيديــو تـفضـل*`;
 
-  for (const mediaData of mediaArray) {
-    const mediaType = mediaData.type;
-    const mediaURL = mediaData.url_download;
+  conn.sendFile(m.chat, api_response.result[0], 'instagram.mp4', cap, m);
+}
 
-    let cap = `HERE IS THE ${mediaType.toUpperCase()} >,<`;
+handler.help = ['instagram']
+handler.tags = ['downloader']
+handler.command = /^(instagram|انستا|ig|instagramdl)$/i
 
-    if (mediaType === 'video') {
-      
-      conn.sendFile(m.chat, mediaURL, 'instagram.mp4', cap, m);
-    } else if (mediaType === 'image') {
-      
-      conn.sendFile(m.chat, mediaURL, 'instagram.jpg', cap, m);
-    }
-  }
-};
-
-handler.help = ['instagram'];
-handler.tags = ['downloader'];
-handler.command = /^(instagram|igdl|ig|انستا)$/i;
-
-export default handler;
-
+export default handler

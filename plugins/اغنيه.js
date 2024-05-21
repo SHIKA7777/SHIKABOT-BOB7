@@ -16,7 +16,7 @@ var handler = async (m, { conn, command, text, usedPrefix }) => {
   let { title, thumbnail, timestamp, views, ago, url } = vid;
   let wm = '♕𝙎𝙃𝙄𝙆𝘼🐥ᵇᵒᵗ♕'; //حط اسم بوتك
 
-  let captvid = `اصبـر ياحـب جـاري التحمـيل... `;
+  let captvid = `*اصبـر ياحـب جـاري التحمـيل...*\n*ماتنســاش ياحــب ميســي عـم الكــل🦦* `;
 
   conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: captvid, footer: author }, { quoted: m });
 

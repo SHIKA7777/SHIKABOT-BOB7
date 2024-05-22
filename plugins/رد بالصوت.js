@@ -11,7 +11,7 @@ handler.all = async function(m, {conn}) {
   if (/^ايرين$/i.test(m.text) && !chat.isBanned) {
     if (!db.data.chats[m.chat].audios) return;
     if (!db.data.settings[this.user.jid].audios_bot && !m.isGroup) return;
-    const vn = './media1/ايرين.mp3';
+    const vn = './Media/ايرين.mp3';
     mconn.conn.sendPresenceUpdate('recording', m.chat);
     mconn.conn.sendMessage(m.chat, {audio: {url: vn}, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});
   }
@@ -19,23 +19,23 @@ handler.all = async function(m, {conn}) {
   if (/^سوكونا$/i.test(m.text) && !chat.isBanned) {
     if (!db.data.chats[m.chat].audios) return;
     if (!db.data.settings[this.user.jid].audios_bot && !m.isGroup) return;
-    const vn = './media/سوكونا.mp3';
+    const vn = './Media/سوكونا.mp3';
     mconn.conn.sendPresenceUpdate('recording', m.chat);
     mconn.conn.sendMessage(m.chat, {audio: {url: vn}, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});
   }
 
-  if (!chat.isBanned && m.text.match(/(دز|دزي|دزو|تدز|يدز|دزها|انقلع|انقلعي|قصف)/gi)) {
+  if (!chat.isBanned && m.text.match(/(توجي)/gi)) {
     if (!db.data.chats[m.chat].audios) return;
     if (!db.data.settings[this.user.jid].audios_bot && !m.isGroup) return;
-    const vn = './media/jhon_cena.mp3';
+    const vn = './Media/توجي.mp3';
     mconn.conn.sendPresenceUpdate('recording', m.chat);
     mconn.conn.sendMessage(m.chat, {audio: {url: vn}, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});
   }
 
-  if (!chat.isBanned && m.text.match(/(بوت)/gi)) { 
+  if (!chat.isBanned && m.text.match(/(غوجو)/gi)) { 
     if (!db.data.chats[m.chat].audios) return;
     if (!db.data.settings[this.user.jid].audios_bot && !m.isGroup) return;
-    const vn = './media/يونا_عمتك.mp3';
+    const vn = './Media/غوجو.mp3';
     mconn.conn.sendPresenceUpdate('recording', m.chat);
     mconn.conn.sendMessage(m.chat, {audio: {url: vn}, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});
   }

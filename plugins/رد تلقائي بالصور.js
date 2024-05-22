@@ -8,8 +8,8 @@ handler.all = async function (m) {
         return true; // Return true to indicate message is handled
     }
 
-    if (/^بيض$/i.test(m.text) ) {
-      let av = 'رابط الصوره'
+    if (/^كريس$/i.test(m.text) ) {
+      let av = 'https://telegra.ph/file/23275081ae8126a414d74.jpg'
       this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
       return true; // Return true to indicate message is handled
     }

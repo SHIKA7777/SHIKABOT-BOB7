@@ -8,14 +8,14 @@ handler.all = async function (m) {
         return true; // Return true to indicate message is handled
     }
 
-    if (/^كريس$/i.test(m.text) ) {
+    if (/^كريستيانو|رونالدو|كريس|سيي|سييي|سيييي|سييييي$/i.test(m.text) ) {
       let av = 'https://telegra.ph/file/23275081ae8126a414d74.jpg'
       this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
       return true; // Return true to indicate message is handled
     }
 
-    if (/^احبك$/i.test(m.text) ) {
-       let av = 'رابط الصوره'
+    if (/^ميسي|مسي|ليو|ليونيل|المعزه$/i.test(m.text) ) {
+       let av = 'https://telegra.ph/file/3e2e3e91f9febece3ad9c.jpg'
        this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
        return true; // Return true to indicate message is handled
     }

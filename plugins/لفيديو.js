@@ -13,7 +13,7 @@ let name = await conn.getName(who)
 let stiker = false
     let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''
-    if (!m.quoted) throw `المرجو الاشارة للملصق المتحرك الذي تريد تحويله لفيديو`
+    if (!m.quoted) throw `*منشــن الملصــق المتحــرك الـي عـايـز تحـولو لفيـديـو🦦*`
 
     let img = await q.download?.()
     let stek = new Sticker(img, { pack: packname, author: author, type: StickerTypes.FULL })
@@ -38,8 +38,8 @@ let stiker = false
      await conn.sendFile(m.chat, out, 'tovid.mp4', 'تم عملية تحويل الملصق لفيديو بنجاح \n تابعني في الانستغرام\ninstagram.com/noureddine_ouafy' , m)
 }
 //lo mau apa??
-handler.help = ['لملصق']
+handler.help = ['sticker']
 handler.tags = ['sticker']
-handler.command = /^لملصق$/i
+handler.command = /^لفيديو$/i
 
 export default handler

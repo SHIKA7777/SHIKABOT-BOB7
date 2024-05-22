@@ -2,7 +2,7 @@
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
    let who
-    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false
+    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : true
     else who = m.chat
     let user = global.db.data.users[who]
     if (!who) throw `□ منشن الشخص`

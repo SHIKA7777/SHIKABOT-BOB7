@@ -1,6 +1,6 @@
 let handler = async (m, { conn }) => {
     const name = conn.getName(m.sender);
-    let videoUrl = 'https://telegra.ph/file/18db853002c9bd7be317c.mp4';
+    let videoUrl = 'https://telegra.ph/file/1ed771d1d8e8c03496f8b.mp4';
     let tagUser = '@' + m.sender.split("@s.whatsapp.net")[0];
     let more = String.fromCharCode(8206);
     let teks = `${pickRandom([` *‌‌╮───⚜️المــ📜ـهــام⚜️──╭*

@@ -1,5 +1,3 @@
-import { Client, MessageMedia } from 'whatsapp-web.js';
-
 const client = new Client();
 
 let playerPosition = 0;

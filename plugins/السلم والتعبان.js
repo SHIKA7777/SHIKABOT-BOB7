@@ -1,4 +1,5 @@
-const { Client } = require('whatsapp-web.js');
+import { Client, MessageMedia } from 'whatsapp-web.js';
+
 const client = new Client();
 
 let playerPosition = 0;
@@ -32,6 +33,23 @@ const snakesAndLadders = {
     98: 80
 };
 
+client.on('message', async (msg) => {
+    const chat = await msg.getChat();
+    const message = msg.body.trim().toLowerCase();
+    if (message === 'السلم-الثعبان') {
+        playerPosition = 0;
+        await chat.sendMessage('تم بدء لعبة السلم والثعبان!');
+    } else if (message === 'نرد') {
+        const steps = rollDice();
+        movePlayer(steps);
+        await chat.sendMessage(`تم التحرك بـ ${steps} خانات. الموقع الحالي: ${playerPosition}`);
+        if (playerPosition >= 100) {
+            await chat.sendMessage('لقد فزت!');
+            playerPosition = 0;
+        }
+    }
+});
+
 function rollDice() {
     return Math.floor(Math.random() * 6) + 1;
 }
@@ -43,21 +61,5 @@ function movePlayer(steps) {
     }
     return playerPosition;
 }
-
-client.on('message', async (msg) => {
-    const chat = await msg.getChat();
-    if (msg.body === 'السلم-الثعبان') {
-        playerPosition = 0;
-        await chat.sendMessage('تم بدء لعبة السلم والثعبان!');
-    } else if (msg.body === 'نرد') {
-        const steps = rollDice();
-        movePlayer(steps);
-        await chat.sendMessage(`تم التحرك بـ ${steps} خانات. الموقع الحالي: ${playerPosition}`);
-        if (playerPosition >= 100) {
-            await chat.sendMessage('لقد فزت!');
-            playerPosition = 0;
-        }
-    }
-});
 
 client.initialize();

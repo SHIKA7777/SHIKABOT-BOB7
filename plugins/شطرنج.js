@@ -14,29 +14,29 @@ const handler = async (m, { conn, args }) => {
   const { gameData, fen, currentTurn, players, hasJoined } = chessData;
   const feature = args[0]?.toLowerCase();
 
-  if (feature === 'احذف') {
+  if (feature === 'حذف') {
     delete conn.chess[key];
-    return conn.reply(m.chat, '֎╎تـم حـذف الـغـرفـه🏳️', m);
+    return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *تم حذف اللعبه*', m);
   }
 
   if (feature === 'صمم') {
     if (gameData) {
-      return conn.reply(m.chat, '֎╎اللـعـبـه بـالـفـعـل فـي الـتـقـدم⚠️', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *اللعبه قائمه بالفعل*', m);
     }
     chessData.gameData = { status: 'waiting', black: null, white: null };
-    return conn.reply(m.chat, '֎╎بـدأت لـعـبـه الـشـطـرنـج\nفـي انـتـظـار انـضـمـام لاعـب آخـر🎮', m);
+    return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *تم تصميم الغرقه*\nفي انتظار اللاعبين للانضمام.', m);
   }
 
-  if (feature === 'انضم') {
+  if (feature === 'ادخل') {
     const senderId = m.sender;
     if (players.includes(senderId)) {
-      return conn.reply(m.chat, '֎╎لـقـد انـضـمـمـت بـالـفـعـل إلـى هـذه اللـعـبـه🙅‍♂️', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *انت لقد قمت بالانضمام بالفعل*', m);
     }
     if (!gameData || gameData.status !== 'waiting') {
-      return conn.reply(m.chat, '֎╎لا تـوجـد غـرفـه شـطـرنـج تـنـتـظـر الـلاعـبـيـن حـالـيـا⚠️', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *لا يوجد لعبه شطرنج في انتظار اللاعبين حاليا*', m);
     }
     if (players.length >= 2) {
-      return conn.reply(m.chat, '֎╎الـلاعـبـيـن مـكـتـمـلـيـن👥', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *اكتمل عدد اللاعبين بالفعل.*\nاللعبه هتبدا لوحدها', m);
     }
     players.push(senderId);
     hasJoined.push(senderId);
@@ -46,15 +46,15 @@ const handler = async (m, { conn, args }) => {
       gameData.black = black;
       gameData.white = white;
       chessData.currentTurn = white;
-      return conn.reply(m.chat, `֎╎الـلاعـبـيـن الـذيـن انـضـمـو🙌:\n${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}\n\n֎╎الاسـود الـزنـجـي @${black.split('@')[0]}\n֎╎الابـيـض الـجـمـيـل @${white.split('@')[0]}\n\n֎╎اكـتـب〖 .شطرنج بدا 〗لـبـدء الـلـعبـه`, m, { mentions: hasJoined });
+      return conn.reply(m.chat, `『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *اللاعبين الي اضمو:*\n${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}\n\n*الاسود:* @${black.split('@')[0]}\n*الابيض:* @${white.split('@')[0]}\n\nمن فضل استخدم *'شطرنج ابدا'* لبدا اللعبه.`, m, { mentions: hasJoined });
     } else {
-      return conn.reply(m.chat, '֎╎لـقـد انـضـمـمـت الـي لـعـبـه الـشـطـرنـج🙋‍♂️\nفـي انـتـظـار لاعـب اخـر', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』*انت لقد انضممت للعبه الشطرنج.*\nفي انتظار اللاعب الاخر', m);
     }
   }
 
   if (feature === 'ابدا') {
     if (gameData.status !== 'ready') {
-      return conn.reply(m.chat, '֎╎لا يـمـكـن بـدأ الـلـعـبـه انـتـظـر⚠️ الـلاعـبـيـن الاثـنـيـن', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *مش عارف ابدا اللعبه. لازم يخش لاعبين الثنين للعب*', m);
     }
     gameData.status = 'playing';
     const senderId = m.sender;
@@ -62,7 +62,7 @@ const handler = async (m, { conn, args }) => {
       const fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
       chessData.fen = fen;
       const encodedFen = encodeURIComponent(fen);
-      const turn = `֎╎🎲دور: الابـيـض الـحـلـو @${gameData.white.split('@')[0]}`;
+      const turn = `『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』دور: *الابيض* @${gameData.white.split('@')[0]}`;
       const flipParam = senderId === gameData.black ? '' : '&flip=true';
       const flipParam2 = senderId === gameData.black ? '' : '-flip';
       const boardUrl = `https://www.chess.com/dynboard?fen=${encodedFen}&board=graffiti&piece=graffiti&size=3&coordinates=inside${flipParam}`;
@@ -74,17 +74,17 @@ const handler = async (m, { conn, args }) => {
       }
       return;
     } else {
-      return conn.reply(m.chat, '֎╎لـقـد انـضـمـمـت الـي لـعـبـه الـشـطـرنـج🙋‍♂️\nفـي انـتـظـار لاعـب اخـر', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *انت لقد انضممت الي اللعبه*\nفي انتظار اللاعب الثاني لدخول اللعبه', m);
     }
   }
 
   if (args[0] && args[1]) {
     const senderId = m.sender;
     if (!gameData || gameData.status !== 'playing') {
-      return conn.reply(m.chat, '֎╎الـلـعـبـه لـم تـبـدأ بـعـد⚠️', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *اللعبه لسه مبدأتش*', m);
     }
     if (currentTurn !== senderId) {
-      return conn.reply(m.chat, `֎╎انـهـا حـالـيـا⏳ ${chessData.currentTurn === gameData.white ? 'White' : 'Black'}'تـتـحـرك`, m, {
+      return conn.reply(m.chat, `『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *المفروض* ${chessData.currentTurn === gameData.white ? 'الابيض' : 'الاسود'}'هو الي يتحرك*`, m, {
         contextInfo: {
           mentionedJid: [currentTurn]
         }
@@ -93,7 +93,7 @@ const handler = async (m, { conn, args }) => {
     const chess = new Chess(fen);
     if (chess.isCheckmate()) {
       delete conn.chess[key];
-      return conn.reply(m.chat, `֎╎لـعـبـه كـش مـلـك\n🏳️ تـوقـفـت لـعـبـه الـشـطـرنـج\n֎╎الـفـائـز: @${m.sender.split('@')[0]}`, m, {
+      return conn.reply(m.chat, `『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *كش مات☠️*\n*اللعبه خلصت.*\n*الكسبان 🎉:* @${m.sender.split('@')[0]}`, m, {
         contextInfo: {
           mentionedJid: [m.sender]
         }
@@ -101,7 +101,7 @@ const handler = async (m, { conn, args }) => {
     }
     if (chess.isDraw()) {
       delete conn.chess[key];
-      return conn.reply(m.chat, `֎╎لـعـبـه الـتـعـادل\nتـوقـفـت لـعـبـه الـشـطـرنـج🏳️\n֎╎الـلاعـبـيـن: ${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}`, m, {
+      return conn.reply(m.chat, `『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *تعادل 😑*\n*اللعبه خلصت*\n*الاعبين:* ${hasJoined.map(playerId => `- @${playerId.split('@')[0]}`).join('\n')}`, m, {
         contextInfo: {
           mentionedJid: hasJoined
         }
@@ -111,15 +111,15 @@ const handler = async (m, { conn, args }) => {
     try {
       chess.move({ from, to, promotion: 'q' });
     } catch (e) {
-      return conn.reply(m.chat, '֎╎خـطـوه غـيـر صـحـيـحـه❌', m);
+      return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *الحركه غير صالحه*', m);
     }
     chessData.fen = chess.fen();
     const currentTurnIndex = players.indexOf(currentTurn);
     const nextTurnIndex = (currentTurnIndex + 1) % 2;
     chessData.currentTurn = players[nextTurnIndex];
     const encodedFen = encodeURIComponent(chess.fen());
-    const currentColor = chessData.currentTurn === gameData.white ? 'White' : 'Black';
-    const turn = `֎╎🎲دور: ${currentColor} @${chessData.currentTurn.split('@')[0]}\n\n${chess.getComment() || ''}`;
+    const currentColor = chessData.currentTurn === gameData.white ? 'الابيض' : 'الاسود';
+    const turn = `『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』 *دور:* ${currentColor} @${chessData.currentTurn.split('@')[0]}\n\n${chess.getComment() || ''}`;
     const flipParam = senderId === gameData.black ? '' : '&flip=true';
     const flipParam2 = senderId === gameData.black ? '' : '-flip';
     const boardUrl = `https://www.chess.com/dynboard?fen=${encodedFen}&board=graffiti&piece=graffiti&size=3&coordinates=inside${flipParam}`;
@@ -133,54 +133,26 @@ const handler = async (m, { conn, args }) => {
     return;
   }
 
-  if (feature === 'شرح') {
+  if (feature === 'مساعده') {
     return conn.reply(m.chat, `
-      〖 شـرح اوامـر لـعـبـه شـطـرنـج 〗
+      الشرح *مساعده اوامر لعبه الشطرنج:*
 
-֎╎لانـشـاء غـرفـه اكـتـب〖 .شطرنج صمم 〗
+*شطرنج صمم* - عشان تعمل غرفه 
+*شطرنج ادخل* - عشان تنضم للغرفه الي صممتها انت و صحبك
+*شطرنج ابدا* - عشان تبدا الجيم الي انت وصحب عملتوه بعد ما دخلتو
+*شطرنج حذف* - عشان تطلع من اللعبه
+*شطرنج [من مكان القطعه الاولي] [الي المكان الي انت عايز تحط القطعه الثانيه]* - عشان تحرك القطع
 
-֎╎لـلـدخـول لـلـغـرفـه اكـتـب〖 .شطرنج ادخل 〗
-֎╎لـبـدأ الـلـعـبـه اكـتـب〖 .شطرنج ابدأ 〗
-
-֎╎لـحـذف الـغـرفـه اكـتـب〖 .شطرنج احذف 〗
-
-֎╎مـثـال:
-֎╎.شـطـرنـج صـمـم لانـشـاء غـرفـه
-
-֎╎.شـطـرنـج ادخـل لانـضمام الـي الـغـرفـه الـمـنـتـظـره
-
-֎╎لـو عـايـز طـريـقـه الـلـعـب اكـتـب .شطرنج الشرح
+*مثال:*
+اكتب *شطرنج صمم* عشان تعمل اللعبه.
+بعدها اكتب *شطرنج ادخل* عشان تخش انت وصاحبك اللعبه.
     `, m);
   }
-  
-  if (feature === 'الشرح') {
-    return conn.reply(m.chat, `
-        〖 شرح طريقه اللعب 〗
-
-֎╎الـلـعـبـه تـلـعـبـهـا كـالـتـالـي:
-
-֎╎مـثـلا عـايـز تـحـرك حـرف a فـي رقـم 3
-
-֎╎هـشـوف مـكـان حـرف a فـيـن وتـكـتـب مـكـانـو
-
-֎╎مـثـلا لـو حـرف a فـي رقـم واحـد
-
-֎╎اكـتـب .شطرنج a1 a3 عـشـان تـحـركـو مـن مـربـع 1 الـي مـربـع3
-
-֎╎او عـايـز تـحـرك حـرف b فـي رقـم 5
-
-֎╎اكـتـب .شطرنج b1 b5
-
-֎╎وبـالـطـريـقـه دي تـقـدر تـحـرك اي حـرف فـي اي مـكـان
-
-֎╎لـو مـش فاهم قـواعـد الـلـعـبـه الاسـاسـيـه اعـمـل حـذف ودز مـن هـنـا
-    `, m);
-  }
-  return conn.reply(m.chat, '֎╎امـر غـيـر صـحـيـح❓ اكـتـب〖 .شطرنج شرح 〗لـمـعـرفـه الاوامـر', m);
+  return conn.reply(m.chat, '『𝔐𝔦𝔨𝔲 𝔅𝔒𝔗』“ امر خاطئ. استعمل*"شطرنج مساعده"* عشان تشوف الاوامر شغاله ازاي.', m);
 };
 
-handler.help = ['شايفك يحرامي [from to]', 'chess delete', 'chess join', 'chess start'];
+handler.help = ['chess [from to]', 'chess delete', 'chess join', 'chess start'];
 handler.tags = ['game'];
-handler.command = /^(شطرنج|chatur)$/i;
+handler.command = /^شطرنج|شت$/i
 
-export default handler;
+export default handler

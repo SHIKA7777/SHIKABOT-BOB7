@@ -6,7 +6,7 @@ let handler = async (m, {
     usedPrefix,
     command
 }) => {
-    let input = `البحث عن فيديوهات في التيكتوك مثال \n\n${usedPrefix + command} free fire`
+    let input = `*اكتــب اسـم الفيــديو الي عـايزنـي ابحــث عنــو فـي التيــك🐤* \n\n*${usedPrefix + command} messi with world cup 🦦*`
   if (!text) return m.reply(input)
  m.reply(wait)
 ttSearch(text).then(a => {
@@ -20,7 +20,7 @@ m.reply('eror')
 }
 handler.help = ['tiktoksearch']
 handler.tags = ['search']
-handler.command=/^(tiktoksearch)$/i
+handler.command=/^(تيكسيرش)$/i
 export default handler
 
 const num = ['0','1','2','3','4','5','6','7','8','9']

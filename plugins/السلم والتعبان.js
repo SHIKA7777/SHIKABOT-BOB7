@@ -60,7 +60,7 @@ function checkWin(player) {
 }
 
 // دالة لبدء اللعبة
-function startGame() {
+function startGame(بدء-اللعبه) {
   while (true) {
     playTurn(1);
     console.log("Player 1 moved to", player1Position);

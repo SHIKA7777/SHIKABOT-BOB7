@@ -1,35 +1,21 @@
-import fg from 'api-dylux' 
+import fetch from 'node-fetch'
 import { tiktokdl, tiktokdlv2, tiktokdlv3 } from '@bochilteam/scraper'
-
-let handler = async (m, { conn, text, args, usedPrefix, command}) => {
-if (!args[0]) throw ` _*فيــن الـرابـط يسطـا 🗿*_\n\n 📌 مثال : \n${usedPrefix + command} https://vm.tiktok.com/ZMMWokkTS/`
-if (!args[0].match(/tiktok/gi)) throw `❎ verify that the link is from tiktok`
-
+let handler = async (m, { conn, text, usedPrefix, command, args }) => {
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+if (!text) return conn.reply(m.chat, `*عاوز تحميل ايه يحب ؟🤔*\n*ضيف رابك الفديو يحب*\n*مثال:*\n*${usedPrefix + command} https://www.tiktok.com/@darkshadow123.5/video/7240190024384318727?is_from_webapp=1&sender_device=pc&web_id=7204957378927150597*`, fkontak,  m)
+if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `*رابط التيكتوك غير صحيح*`, fkontak,  m)  
 try {
-    let p = await fg.tiktok(args[0]) 
-    let te = `
-┌─⌬『 _*TIKTOK*_ 』
-☬ *Username:* ${p.unique_id}
-☬ *Description:* ${p.title}
-☬ *Duration:* ${p.duration}
-└───────────`
-   conn.sendFile(m.chat, p.play, 'tiktok.mp4', te, m)
-    } catch {  	
-	const { author: { nickname }, video, description } = await tiktokdl(args[0])
-         .catch(async _ => await tiktokdlv2(args[0]))
-         .catch(async _ => await tiktokdlv3(args[0]))
-    const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
-    if (!url) throw '-*حصــل مشكــله في تحمـيل الفيــديو🦦*- '
-     conn.sendFile(m.chat, url, 'fb.mp4', `
-┌─⌬『 _*TIKTOK DL*_ 』
-☬ *Username:* ${nickname} ${description ? `\n▢ *Description:* ${description}` : ''}
-└───────────`, m)
-} 
-    
-}  
+await conn.reply(m.chat, `⌛ _جاري الارسال..._\n▰▰▱▱▱\nالفديو بيتبعت ( احب افكرك انا خالي المسئولية من ذنوب اغانيك ) 🔰`, fkontak,  m)  
+const { author: { nickname }, video, description } = await tiktokdl(args[0])
+.catch(async _ => await tiktokdlv2(args[0]))
+.catch(async _ => await tiktokdlv3(args[0]))
+const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
+if (!url) return conn.reply(m.chat, `*اوووف, خطأ أثناء محاولة تنزيل الفيديو ، يرجى المحاولة مرة أخرى*`, fkontak,  m)
+conn.sendFile(m.chat, url, 'tiktok.mp4', `*تمت المهمة* 🫡💜`.trim(), m)
+} catch {
+}}
 handler.help = ['tiktok']
 handler.tags = ['dl']
-handler.command = /^(tiktok|تيكتوك|تيك|tiktoknowm)$/i
-handler.diamond = false
-
+handler.command = /^(tt|tiktok)(dl|nowm)|تيك|تيكتوك|تيك-توك$/i
+handler.limit = 1
 export default handler

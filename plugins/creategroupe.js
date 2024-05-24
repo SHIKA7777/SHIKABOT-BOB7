@@ -1,21 +1,21 @@
 //import { bold } from "chalk"
 let handler = async (m, { conn, text }) => {
    
-   if (!text) return m.reply('_ضع امام الامر اسم المجموعة التي تريد إنشاءها مثلا!_\n*.creategroupe bobiza & nour bot*')
+   if (!text) return m.reply('_*اكتــب الامـر+اسـم المجمــوعه مثال*_\n*.انشاء-جروب* 𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪')
    try{
     m.reply(wait)
     let group = await conn.groupCreate(text, [m.sender])
     let link = await conn.groupInviteCode(group.gid)
     let url = 'https://chat.whatsapp.com/' + link;
  /// console.log(chalk.bold.red('Membuat Grup: ' + group.gid + '\nNama Grup: ' + text + '\n\nViolet'))
-    m.reply('_تم إنشاء المجموعة بنجاح*' + text + '*_\n\n*الاسم:* ' + text + '\n*ID:* ' + group.gid + '\n*رابطها:* ' + url)
+    m.reply('*مجمــوعتك جاهــوه🦦🤍*' + text + '*_\n\n*الاسم:* ' + text + '\n*ID:* ' + group.gid + '\n*رابطها:* ' + url)
        } catch (e) {
     m.reply(`Error`)
   }
 }
-handler.help = ['creategroup']
+handler.help = ['انشاء-جروب']
 handler.tags = ['owner']
-handler.command = /^creategroup$/
+handler.command = /^انشاء-جروب$/
 handler.owner = true
 handler.premium = false
 export default handler

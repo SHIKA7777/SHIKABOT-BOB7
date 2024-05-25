@@ -8,16 +8,16 @@ handler.all = async function (m) {
         return true; // Return true to indicate message is handled
     }
 
-    if (رونالدو$/i.test(m.text) ) {
-      let av = 'https://telegra.ph/file/23275081ae8126a414d74.jpg'
-      this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
-      return true; // Return true to indicate message is handled
+    if (/^كريستيانو$/i.test(m.text) ) {
+        let av = 'https://telegra.ph/file/cc3e9c27acf3115214dac.jpg'
+        this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
+        return true; // Return true to indicate message is handled
     }
 
-    if (/^goat|ليونيل$/i.test(m.text) ) {
-       let av = 'https://telegra.ph/file/3e2e3e91f9febece3ad9c.jpg'
-       this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
-       return true; // Return true to indicate message is handled
+    if (/^ليونيل|goat$/i.test(m.text) ) {
+        let av = 'https://telegra.ph/file/3e2e3e91f9febece3ad9c.jpg'
+        this.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
+        return true; // Return true to indicate message is handled
     }
 
     if (/^اسطوري$/i.test(m.text) ) {

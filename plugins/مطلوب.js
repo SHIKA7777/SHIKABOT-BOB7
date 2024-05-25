@@ -1,22 +1,21 @@
-import uploadImage from '../lib/uploadImage.js'
 
 let handler = async (m) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw '*منشــن علـ الصـوره🦦*'
+  if (!mime) throw '*قم بالرد علي صوره*'
   if (mime && mime.startsWith('video/')) {
-    throw '_خطأ ، الرد فقط علی الصور_';
+    throw 'رد علی صوره!';
   }
   let media = await q.download()
   let isTele = /image\/(png|jpe?g|gif)/.test(mime)
-  m.react(rwait)
+  m.reply(wait)
   let link = await (isTele ? uploadImage : uploadImage)(media);
   let lr = (`https://api.popcat.xyz/wanted?image=${link}`)
-  conn.sendFile(m.chat, lr, 'wanted.png', `*📌 تفضل طلبك*`, m)
-  m.react(done)
+  conn.sendFile(m.chat, lr, 'wanted.png', `𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪`, m)
 }
 handler.help = ['wanted']
 handler.tags = ['meme']
 handler.command = ['مطلوب','المطلوب']
 
+handler.group = true
 export default handler

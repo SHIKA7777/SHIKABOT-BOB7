@@ -6,9 +6,9 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
   let user = global.db.data.users[m.sender]
   let name2 = conn.getName(m.sender)
   if (user.registered === true) throw `✳️ أنت ملقب بالفعل يا حب`
-  if (!Reg.test(text)) throw `⚠️ تنسيق غير صحيح\n\n✳️ استخدم هذا الأمر: *${usedPrefix + command} القب*\n📌 مثال: *${usedPrefix + command}* كيلوا كلاود\n📌`
+  if (!Reg.test(text)) throw `⚠️ تنسيق غير صحيح\n\n✳️ استخدم هذا الأمر: *${usedPrefix + command} القب*\n📌 مثال: *${usedPrefix + command}* لقبك واسم النقابه\n📌 مثال: *${usedPrefix + command}* كيلوا كلاود`
   let [_, name] = text.match(Reg)
-  if (!name) throw '⚠️ تنسيق غير صحيح\n\n✳️ استخدم هذا الأمر: .لقبني اللقب النقابه\n📌 مثال: .لقبني كيلوا كلاود'
+  if (!name) throw '✳️ لا يمكن أن يكون اللقب فارغًا'
   if (name.length >= 30) throw '✳️ اللقب طويل جدًا'
   user.name = name.trim()
   user.regTime = + new Date

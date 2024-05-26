@@ -1,6 +1,6 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
 		
-			await conn.sendMessage(m.chat, { video: { url: dir[Math.floor(Math.random() * dir.length)] }, caption: `_تابع صاحب البوت في الانستغرام_\ninstagram.com/noureddine_ouafy` }, { quoted: m })
+			await conn.sendMessage(m.chat, { video: { url: dir[Math.floor(Math.random() * dir.length)] }, caption: `🤍🤍` }, { quoted: m })
 	}
 
 handler.help = ['بدر']

@@ -3,10 +3,8 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const name = conn.getName(m.sender)
   if (!text) {
-    throw `أهلاً *${name}*, هل تريد أن تتحدث مع اليكسا؟*/n اكتب اليكسا *${usedPrefix + command}* (ورســالتك)\n\n📌 مثـال: *${usedPrefix + command}* اهلا`
+    throw `أهلاً *${name}*, هل تريد أن تتحدث مع اليكسا؟*\n اكتب اليكسا *${usedPrefix + command}* (ورســالتك)\n\n📌 مثـال: *${usedPrefix + command}* اهلا`
   }
-
-  m.react('💎')
 
   const msg = encodeURIComponent(text)
 

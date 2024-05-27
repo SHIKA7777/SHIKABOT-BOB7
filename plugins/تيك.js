@@ -1,21 +1,41 @@
-import fetch from 'node-fetch'
-import { tiktokdl, tiktokdlv2, tiktokdlv3 } from '@bochilteam/scraper'
-let handler = async (m, { conn, text, usedPrefix, command, args }) => {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-if (!text) return conn.reply(m.chat, `*عاوز تحميل ايه يحب ؟🤔*\n*ضيف رابك الفديو يحب*\n*مثال:*\n*${usedPrefix + command} https://www.tiktok.com/@darkshadow123.5/video/7240190024384318727?is_from_webapp=1&sender_device=pc&web_id=7204957378927150597*`, fkontak,  m)
-if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `*رابط التيكتوك غير صحيح*`, fkontak,  m)  
-try {
-await conn.reply(m.chat, `⌛ _جاري الارسال..._\n▰▰▱▱▱\nالفديو بيتبعت ( احب افكرك انا خالي المسئولية من ذنوب اغانيك ) 🔰`, fkontak,  m)  
-const { author: { nickname }, video, description } = await tiktokdl(args[0])
-.catch(async _ => await tiktokdlv2(args[0]))
-.catch(async _ => await tiktokdlv3(args[0]))
-const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd
-if (!url) return conn.reply(m.chat, `*اوووف, خطأ أثناء محاولة تنزيل الفيديو ، يرجى المحاولة مرة أخرى*`, fkontak,  m)
-conn.sendFile(m.chat, url, 'tiktok.mp4', `*تمت المهمة* 🫡💜`.trim(), m)
-} catch {
-}}
-handler.help = ['tiktok']
-handler.tags = ['dl']
-handler.command = /^(tt|tiktok)(dl|nowm)|تيك|تيكتوك|تيك-توك$/i
-handler.limit = 1
-export default handler
+exports.run = {
+   usage: ['tiktok', 'tikmp3', 'tikwm'],
+   hidden: ['tt'],
+   use: 'link',
+   category: 'downloader',
+   async: async (m, {
+      client,
+      args,
+      isPrefix,
+      command,
+      Func
+   }) => {
+      try {
+         if (!args || !args[0]) return client.reply(m.chat, Func.example(isPrefix, command, 'https://vm.tiktok.com/ZSR7c5G6y/'), m)
+         if (!args[0].match('tiktok.com')) return client.reply(m.chat, global.status.invalid, m)
+         client.sendReact(m.chat, '🕒', m.key)
+         let old = new Date()
+         const json = await Api.neoxr('/tiktok', {
+            url: Func.ttFixed(args[0])
+         })
+         if (!json.status) return m.reply(Func.jsonFormat(json))
+         if (command == 'tiktok' || command == 'tt') {
+            if (json.data.video) return client.sendFile(m.chat, json.data.video, 'video.mp4', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
+            if (json.data.photo) {
+               for (let p of json.data.photo) {
+                  client.sendFile(m.chat, p, 'image.jpg', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
+                  await Func.delay(1500)
+               }
+            }
+         }
+         if (command == 'tikwm') return client.sendFile(m.chat, json.data.videoWM, 'video.mp4', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
+         if (command == 'tikmp3') return !json.data.audio ? client.reply(m.chat, global.status.fail, m) : client.sendFile(m.chat, json.data.audio, 'audio.mp3', '', m)
+      } catch (e) {
+         return client.reply(m.chat, Func.jsonFormat(e), m)
+      }
+   },
+   error: false,
+   limit: true,
+   cache: true,
+   location: __filename
+   }

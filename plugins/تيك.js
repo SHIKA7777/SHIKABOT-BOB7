@@ -1,41 +1,21 @@
-exports.run = {
-   usage: ['tiktok', 'tikmp3', 'tikwm'],
-   hidden: ['tt'],
-   use: 'link',
-   category: 'downloader',
-   async: async (m, {
-      client,
-      args,
-      isPrefix,
-      command,
-      Func
-   }) => {
-      try {
-         if (!args || !args[0]) return client.reply(m.chat, Func.example(isPrefix, command, 'https://vm.tiktok.com/ZSR7c5G6y/'), m)
-         if (!args[0].match('tiktok.com')) return client.reply(m.chat, global.status.invalid, m)
-         client.sendReact(m.chat, '🕒', m.key)
-         let old = new Date()
-         const json = await Api.neoxr('/tiktok', {
-            url: Func.ttFixed(args[0])
-         })
-         if (!json.status) return m.reply(Func.jsonFormat(json))
-         if (command == 'tiktok' || command == 'tt') {
-            if (json.data.video) return client.sendFile(m.chat, json.data.video, 'video.mp4', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
-            if (json.data.photo) {
-               for (let p of json.data.photo) {
-                  client.sendFile(m.chat, p, 'image.jpg', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
-                  await Func.delay(1500)
-               }
-            }
-         }
-         if (command == 'tikwm') return client.sendFile(m.chat, json.data.videoWM, 'video.mp4', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
-         if (command == 'tikmp3') return !json.data.audio ? client.reply(m.chat, global.status.fail, m) : client.sendFile(m.chat, json.data.audio, 'audio.mp3', '', m)
-      } catch (e) {
-         return client.reply(m.chat, Func.jsonFormat(e), m)
-      }
-   },
-   error: false,
-   limit: true,
-   cache: true,
-   location: __filename
-   }
+import { tiktokdl } from '@bochilteam/scraper';
+import fg from 'api-dylux';
+
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+
+ if (!args[0] && m.quoted && m.quoted.text) {
+  args[0] = m.quoted.text;
+}
+if (!args[0] && !m.quoted) throw `اعطني الرابط \n\nمثال: https://vm.tiktok.com/ZMMPhv9Fb/`;
+ if (!args[0].match(/tiktok/gi)) throw `تأكد من ان الرابط رابط تيك توك`;
+
+
+  let txt = '*استغفــرالله🤍*';
+
+  try {
+    const { author: { nickname }, video, description } = await tiktokdl(args[0]);
+    const url = video.no_watermark2 || video.no_watermark || 'https://tikcdn.net' + video.no_watermark_raw || video.no_watermark_hd;
+
+    if (!url) throw global.error;
+
+    conn.sendFile(m.chat, url, 'tiktok.mp4', '', m);

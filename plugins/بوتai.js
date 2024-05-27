@@ -55,7 +55,7 @@ if (!text) throw `مثال${usedPrefix}${command} من هو النبي صلى ا
 
 handler.help = ['بوت <pertanyaan>']
 handler.tags = ['ai']
-handler.command = /^بوت|simo|ai$/i
+handler.command = /^بوت$/i
 handler.limit = 3
 handler.register = false
 

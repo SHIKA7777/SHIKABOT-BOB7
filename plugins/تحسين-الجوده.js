@@ -11,9 +11,9 @@ async function handler(m, { conn, usedPrefix, command }) {
             const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=beta-Nourr123`);
             const image = await api.json();
             const { url } = image;
-            conn.sendFile(m.chat, url, null, 'instagram.com/noureddine_ouafy', m);
+            conn.sendFile(m.chat, url, null, '*طـرش الطرش🦦*', m);
         } else {
-            m.reply(`هذا الامر خاص بزيادة جودة اي صورة يكفي فقط ان ترسل للبوت الصورة وتقوم بالاشارة اليها وتكتب :\n*${usedPrefix + command}*`);
+            m.reply(`_ابعـت صـورتك وهـروق عليهـا منشـن الصـوره بـس واكتـب_ :\n*${usedPrefix + command}*`);
         }
     } catch (e) {
         console.error(e);
@@ -23,6 +23,6 @@ async function handler(m, { conn, usedPrefix, command }) {
 
 handler.help = ['remini2'];
 handler.tags = ['image-edit'];
-handler.command = ['remini2'];
+handler.command = ['تحسين-الجوده'];
 
 export default handler;

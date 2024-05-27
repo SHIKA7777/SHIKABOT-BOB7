@@ -160,7 +160,7 @@ let handler = async (m, { conn, usedPrefix, args, command }) => {
   }
 
   // START GAME
-  if (args[0] == "ابدا"){
+  if (args[0] == "حرب-ابدا"){
     if (conn.war2[m.chat].war) return m.reply(`⌯لــقــد بــدات الــحــرب لــا يــمــكــنــك الـانـضـمـام الــيــهــا الــلـان`)
     teamA = 0
     teamB = 0

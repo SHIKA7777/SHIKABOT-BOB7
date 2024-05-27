@@ -1,4 +1,4 @@
-iالرقم { createHash } from 'crypto'
+import { createHash } from 'crypto'
 import PhoneNumber from 'awesome-phonenumber'
 import { canLevelUp, xpRange } from '../lib/levelling.js'
 '//import db from '../lib/database.js'

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 let handler = async (m, { conn, args }) => {
-let wib = moment.tz('Africa/casablanca').format('HH:mm:ss')
+let wib = moment.tz('Africa/cairo').format('HH:mm:ss')
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth() + 1;

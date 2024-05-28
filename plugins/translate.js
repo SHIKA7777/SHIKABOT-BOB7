@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { args, usedPrefix, command }) => {
 let msg = `*هذا الأمر يمكنك من الترجمة الفورية لكل اللغات* 
 _مثال اذا اردت الترجمة للعربية_ : 
-*.ترجمه* ar Hello`
+*.tr* ar Hello`
 if (!args || !args[0]) return m.reply(msg)  
 let lang = args[0]
 let text = args.slice(1).join(' ')
@@ -14,17 +14,17 @@ text = args.join(' ')}
 if (!text && m.quoted && m.quoted.text) text = m.quoted.text
 try {      
 let result = await translate(`${text}`, { to: lang, autoCorrect: true })
-await m.reply('*اتعلمــو بقــا وكفـايه قـرف🗿*' \n'التـرجمه \nresult.text)
+await m.reply('*اتعلمـــو بقــا قرفتـوني🗿*\n\n*ترجمتــك✨*\n\n' _*+ result.text*_)
 } catch {
 try {    
 let lol = await fetch(`https://api.lolhuman.xyz/api/translate/auto/${lang}?apikey=85faf717d0545d14074659ad&text=${text}`)
 let loll = await lol.json()
 let result2 = loll.result.translated
-await m.reply('*اتفضــل ياحـب🗿 \:* ' + result2)
+await m.reply('*تفضل هذه ترجمتك سيدي \:* ' + result2)
 } catch { 
 await m.reply('*مشكلة أعد المحاولة لاحقا *')    
 }}}
 handler.help = ["translate"]
 handler.tags = ["tools"]
-handler.command = /^(ترجمه)$/i
+handler.command = /^(translate|tr)$/i
 export default handler

@@ -369,7 +369,10 @@ global.reloadHandler = async function(restatConn) {
     conn.ev.off('creds.update', conn.credsUpdate);
   }
 const { Client, LocalAuth } = require('whatsapp-web.js');
+constconst { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
+const fs = require('fs');
+const path = require('path');
 
 const client = new Client({
     authStrategy: new LocalAuth()
@@ -383,16 +386,17 @@ client.on('ready', () => {
     console.log('The bot is ready!');
 });
 
-// حدث عند انضمام عضو جديد إلى المجموعة
-client.on('group_join', (notification) => {
-    const chatId = notification.id.remote;
-    const contactId = notification.recipientIds[0];
-
-    client.getContactById(contactId).then(contact => {
-        const welcomeMessage = `مرحبًا ${contact.pushname} في المجموعة!`;
-        client.sendMessage(chatId, welcomeMessage);
-    });
+// تحميل وتشغيل جميع المكونات الإضافية من مجلد plugins
+const pluginsPath = path.join(__dirname, 'plugins');
+fs.readdirSync(pluginsPath).forEach(file => {
+    if (file.endsWith('.js')) {
+        const plugin = require(path.join(pluginsPath, file));
+        plugin(client);
+    }
 });
+
+client.initialize();
+
 
 client.initialize();
   conn.welcome = '🐥 منـــور يارايــق/to!\n@user';

@@ -368,7 +368,7 @@ global.reloadHandler = async function(restatConn) {
     conn.ev.off('connection.update', conn.connectionUpdate);
     conn.ev.off('creds.update', conn.credsUpdate);
   }
-  client.initialize();
+
   conn.welcome = '🐥 منـــور يارايــق/to!\n@user';
   conn.bye = 'اخيــرا طلـع دا عيـل بضـان 🗿💔\n@user';
   conn.spromote = '*[ ℹ️ ] @user مبــروك ياحـب روح شـوف شغـلك بقـا عشـان ماتخـدش اعفـاء🦦.*';
@@ -530,7 +530,7 @@ setInterval(async () => {
   if (stopped === 'close' || !conn || !conn.user) return;
   const _uptime = process.uptime() * 1000;
   const uptime = clockString(_uptime);
-  const bio = `♕𝙎𝙃𝙄𝙆𝘼🐥ᵇᵒᵗ♕ ⏱️  مــدة التشــغيل: ${uptime}`;
+  const bio = `𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪 ⏱️  مــدة التشــغيل: ${uptime}`;
   await conn.updateProfileStatus(bio).catch((_) => _);
 }, 60000);
 function clockString(ms) {

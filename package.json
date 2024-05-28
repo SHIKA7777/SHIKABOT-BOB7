@@ -8,6 +8,7 @@
     "lib": "lib",
     "src": "src",
     "plugins": "plugins"
+    node main.js
   },
   "scripts": {
     "start": "node index.js",

@@ -368,7 +368,33 @@ global.reloadHandler = async function(restatConn) {
     conn.ev.off('connection.update', conn.connectionUpdate);
     conn.ev.off('creds.update', conn.credsUpdate);
   }
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
 
+const client = new Client({
+    authStrategy: new LocalAuth()
+});
+
+client.on('qr', (qr) => {
+    qrcode.generate(qr, { small: true });
+});
+
+client.on('ready', () => {
+    console.log('The bot is ready!');
+});
+
+// حدث عند انضمام عضو جديد إلى المجموعة
+client.on('group_join', (notification) => {
+    const chatId = notification.id.remote;
+    const contactId = notification.recipientIds[0];
+
+    client.getContactById(contactId).then(contact => {
+        const welcomeMessage = `مرحبًا ${contact.pushname} في المجموعة!`;
+        client.sendMessage(chatId, welcomeMessage);
+    });
+});
+
+client.initialize();
   conn.welcome = '🐥 منـــور يارايــق/to!\n@user';
   conn.bye = 'اخيــرا طلـع دا عيـل بضـان 🗿💔\n@user';
   conn.spromote = '*[ ℹ️ ] @user مبــروك ياحـب روح شـوف شغـلك بقـا عشـان ماتخـدش اعفـاء🦦.*';

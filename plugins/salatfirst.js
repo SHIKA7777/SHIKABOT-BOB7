@@ -1,34 +1,26 @@
-export async function before(m) {
-    this.autosholat = this.autosholat ? this.autosholat : {};
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? this.user.jid : m.sender;
-    let name = await this.getName(who);
-    let id = m.chat;
-    if (id in this.autosholat) {
-        return false;
+import axios from 'axios';
+
+const handler = async (m, { text }) => {
+    if (!text) {
+        return m.reply('يرجى تحديد اسم المدينة لعرض مواقيت الصلاة. مثال:\n\n.الصلاة القاهرة');
     }
-    let jadwalSholat = {
-        الفجر: "06:39",
-        الضحى: "08:10",
-        الظهر: "13:41",
-        العصر: "16:50",
-        المغرب: "19:15",
-        العشاء: "20:33"
-    };
-    const date = new Date(new Date().toLocaleString("en-US", {
-      timeZone:"Africa/Casablanca"
-    }));
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const timeNow = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-    for (const [sholat, waktu] of Object.entries(jadwalSholat)) {
-        if (timeNow === waktu) {
-            let caption = `السلام  عليكم   *${name}*,\nحان موعد صلاة *${sholat}* اذهب و توضأ بسرعة و قم لصلاتك ♥ ولا تنسانا من الدعاء.\n\n*${waktu}*\n_هذا توقيت الصلاة في الرباط وما جاورها_`;
-            this.autosholat[id] = [
-                this.reply(m.chat, caption, null),
-                setTimeout(() => {
-                    delete this.autosholat[id];
-                }, 57000)
-            ];
-        }
+
+    try {
+        const prayerResponse = await axios.get(`http://api.aladhan.com/v1/timingsByCity?city=${text}&country=EG`);
+        const prayerData = prayerResponse.data.data.timings;
+
+        const message = `مواقيت الصلاة في ${text} اليوم:\n- الفجر: ${prayerData.Fajr}\n- الشروق: ${prayerData.Sunrise}\n- الظهر: ${prayerData.Dhuhr}\n- العصر: ${prayerData.Asr}\n- المغرب: ${prayerData.Maghrib}\n- العشاء: ${prayerData.Isha}`;
+        m.reply(message);
+    } catch (error) {
+        console.error('حدث خطأ في الحصول على مواقيت الصلاة:', error);
+        m.reply('عذرًا، لم أتمكن من العثور على مواقيت الصلاة لهذه المدينة.');
     }
 }
+
+handler.command = ['الصلاة', 'مواقيت_الصلاة','الصلاه']
+handler.tags = ['tools']
+
+export default handler
+
+
+> ROPERTO AL MASRY

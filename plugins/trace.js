@@ -68,6 +68,6 @@ function formatDuration(ms) {
 
 handler.help = ["trace"];
 handler.tags = ["anime"];
-handler.command = /^trace$/i;
+handler.command = /^تشابه-انمي$/i;
 
 export default handler;

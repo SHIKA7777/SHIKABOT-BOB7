@@ -1,4 +1,10 @@
 let handler = async(m, { isOwner, isAdmin, conn, text, participants, args, command }) => {
+if(!text) {
+var sum = member.length
+} else {
+var sum = text} 
+var total = 0
+for(let i = 0; i < sum; i++) 
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
 throw false

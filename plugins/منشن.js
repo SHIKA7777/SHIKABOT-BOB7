@@ -1,23 +1,11 @@
-let handler = async(m, { isOwner, isAdmin,
-let member = participants.map(u => u.id)
- conn, text, participants, args, command }) => {
-if(!text) {
-var sum = member.length
-} else {
-var sum = text} 
-var total = 0
-for(let i = 0; i < sum; i++) 
-if((typeof global.db.data.users[member[i]] == 'undefined' || global.db.data.users[member[i]].chat == 0) && !users.isAdmin && !users.isSuperAdmin) { 
-if (typeof global.db.data.users[member[i]] !== 'undefined'){
-if(global.db.data.users[member[i]].whitelist == false){
-total++
+let handler = async(m, { isOwner, isAdmin, conn, text, participants, args, command }) => {
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
 throw false
 }//غير ڤينوم و حط اسم بوتك
 let pesan = args.join` `
 let oi = `*┇*\n*┇⌬الرسـاله📨:* 
- ${pesan}\n*┇الجــروب🌐:*\n${await conn.getName(m.chat)}\n*┇الاعضــاء👥:* ${sum}`
+ ${pesan}\n*┇الجــروب🌐:*\n${await conn.getName(m.chat)}`
 let teks = `*┓━『  المنشــن الجمــاعي 』━┏*\n${oi}\n*┇*\n*——————————*\n*منشـن┊🐥┊ستــورم :⇣*\n*——————————*\n`
 for (let mem of participants) {
 teks += `> *♦* @${mem.id.split('@')[0]}\n`}

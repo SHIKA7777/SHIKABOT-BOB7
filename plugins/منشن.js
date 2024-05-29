@@ -5,6 +5,10 @@ var sum = member.length
 var sum = text} 
 var total = 0
 for(let i = 0; i < sum; i++) 
+if((typeof global.db.data.users[member[i]] == 'undefined' || global.db.data.users[member[i]].chat == 0) && !users.isAdmin && !users.isSuperAdmin) { 
+if (typeof global.db.data.users[member[i]] !== 'undefined'){
+if(global.db.data.users[member[i]].whitelist == false){
+total++
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
 throw false

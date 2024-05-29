@@ -1,4 +1,6 @@
-let handler = async(m, { isOwner, isAdmin, conn, text, participants, args, command }) => {
+let handler = async(m, { isOwner, isAdmin,
+let member = participants.map(u => u.id)
+ conn, text, participants, args, command }) => {
 if(!text) {
 var sum = member.length
 } else {

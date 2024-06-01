@@ -1,8 +1,9 @@
 let handler  = async (m, { conn }) => {
-conn.reply(m.chat,`*جــرب دا🦦*:\n*ꔹ━━━━━ꔹ❰ افلام غموض ❱ꔹ━━━━━ꔹ*\n*『${pickRandom(global.bxviu)}』*\n*ꔹ━━━━━ꔹ❰ 𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪 ❱*`, m)
-  m.react('🎞')
+conn.reply(m.chat,`*‌            ╎⚜️ف-غمـوض⚜️╎*\n*——————————————* \n> *『${pickRandom(global.bxviu)}』*\n*——————————————* \n‌         𓆩𝐖.𝐒.𝐙『🔱』𝐒𝐓𝐎𝐑𝐌𓆪`, m)
+
+await conn.sendMessage(m.chat, { react: { text: '🎞', key: m.key } })
 }
-handler.help = ['Z O R O']
+handler.help = ['افلام']
 handler.tags = ['fun']
 handler.command = /فيلم-غموض$/i
 export default handler

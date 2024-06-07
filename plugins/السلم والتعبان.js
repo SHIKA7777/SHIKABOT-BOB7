@@ -63,6 +63,6 @@ const handler = async (m, { conn, text, command }) => {
 
 handler.help = ['الأفعى_والسلم 🐍🏁'].map(v => v + ' [عدد_اللاعبين]');
 handler.tags = ['game'];
-handler.command = /^(الأفعى_والسلم|سلم_وثعبان)$/i;
+handler.command = /^(السلم-و-التعبان)$/i;
 
 export default handler;

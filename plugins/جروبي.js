@@ -34,6 +34,12 @@ ${listAdmin}
 `.trim()
     conn.sendFile(m.chat, pp, 'pp.jpg', text, m, false, { mentions: [...groupAdmins.map(v => v.id), owner] })
 }
+contextInfo: {externalAdReply: {mediaUrl: null, mediaType: 1, description: null,
+      title: tradutor.texto1[0],
+      body: '© ♕𝙎𝙃𝙄𝙆𝘼🐥♕',
+      previewType: 0, thumbnail: fs.readFileSync('./Menu2.jpg'),
+      sourceUrl: `https://whatsapp.com/channel/0029Vag9bvrLSmbRE2I5Oj2h`}}});
+};
 
 handler.help = ['infogp']
 handler.tags = ['group']

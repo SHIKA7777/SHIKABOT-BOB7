@@ -12,7 +12,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     let caption = `*${command.toUpperCase()}*
  *☬↫『الـوقــت⏱️↫ ${(timeout / 1000).toFixed(2)} 』*
 *⌬—————:—————⌬*
-*اكتب انسحب للانسحاب🏳*
+*اكتب انسحب للانسحاب*
 *⌬—————:—————⌬*
   *☬↫『الـجـائـزة↫ ${poin} 🪙┇*
 *⌬—————:—————⌬*

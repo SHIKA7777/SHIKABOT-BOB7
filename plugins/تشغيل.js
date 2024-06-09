@@ -5,11 +5,11 @@ import search from 'yt-search'
 let sentVideos = [];
 
 let handler = async (m, { conn, text }) => {
-  if (!text) return m.reply('*مثال* : *.تشغيل edit deadpool*');
+  if (!text) return m.reply('*مثال* : *.تشغيل Messi with world cup🐐*');
 
   conn.sendMessage(m.chat, {
     react: {
-      text: '🕒',
+      text: '📽',
       key: m.key,
     }
   });
@@ -29,7 +29,7 @@ let handler = async (m, { conn, text }) => {
         }
       }
       if (!newVideoId) {
-        return m.reply('🐱 لا توجد المزيد من المقاطع بنفس هذا العنوان');
+        return m.reply('👐🏻لا يوجد المزيد من المقاطع بنفس هذا العنوان');
       }
       videoId = newVideoId;
       info = await ytdl.getInfo(videoId);
@@ -45,7 +45,7 @@ let handler = async (m, { conn, text }) => {
       if (fileSize > 50 * 1024 * 1024) {
         video.destroy();
         fs.unlinkSync(`${title}.mp4`);
-        m.reply('🐱 حجم الفيديو كبير جدا');
+        m.reply('‼️ حجم الفيديو كبير جدا');
       }
     });
 
@@ -61,7 +61,7 @@ let handler = async (m, { conn, text }) => {
     });
   } catch (e) {
     console.log(e);
-    m.reply(`🐱 خطأ في استيراد الفيديو: ${e.message}`);
+    m.reply(`❌ خطأ في استيراد الفيديو: ${e.message}`);
   }
 };
 

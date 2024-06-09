@@ -22,6 +22,6 @@ m.reply(`‌‌ *_⌬تعلن مملكة ستورم عن فعالية🔮_*
 }
 handler.help = ['الفعاليات']
 handler.tags = ['infobot']
-handler.command = /^(ديث-نوت)$/i
+handler.command = /^(ف-ديث-نوت)$/i
 
 export default handler;

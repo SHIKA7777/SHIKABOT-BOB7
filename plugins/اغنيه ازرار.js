@@ -43,7 +43,7 @@ await conn.sendButton(m.chat, texto1, wm, res.videos[0].thumbnail, [
        let { title, dl_url, size } = yt
        let limit = 100
 
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`يزن الملف أكثر من ${limit} ميغابايت، تم إلغاء التنزيل.`, m).then(_ => m.react('✖️'))
+if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`يزن الملف أكثر من ${limit} ميغابايت، تم إلغاء التنزيل.`, m).
 
 await conn.sendMessage(m.chat, { audio: { url: dl_url }, mimetype: "audio/mp4", fileName: vid.title + '.mp3', quoted: m, contextInfo: {
 'forwardingScore': 200,

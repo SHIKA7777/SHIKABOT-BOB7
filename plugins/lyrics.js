@@ -68,9 +68,9 @@ instagram.com/noureddine_ouafy
         }
     }
 };
-verline.help = ["كلمات"]
+verline.help = ["lirik"]
 verline.tags = ["internet"];
-verline.command = /^كلمات$/i;
+verline.command = /^lyric$/i;
 export default verline;
 async function getLyrics(url) {
     const response = await fetch("https://files.xianqiao.wang/" + url);
@@ -88,4 +88,4 @@ async function getLyrics(url) {
         }
     });
     return lyrics;
-}
+        }

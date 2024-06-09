@@ -8,14 +8,14 @@ let handler = async (m, { conn, text }) => {
     let link = await conn.groupInviteCode(group.gid)
     let url = 'https://chat.whatsapp.com/' + link;
  /// console.log(chalk.bold.red('Membuat Grup: ' + group.gid + '\nNama Grup: ' + text + '\n\nViolet'))
-    m.reply('*مجمــوعتك جاهــوه🦦🤍*' + text + '*_\n\n*الاسم:* ' + text + '\n*ID:* ' + group.gid + '\n*رابطها:* ' + url)
+    m.reply('*مجمــوعتك جاهــزه🦦🤍*' + text + '*_\n\n*الاسم:* ' + text + '\n*ID:* ' + group.gid + '\n*رابطها:* ' + url)
        } catch (e) {
     m.reply(`Error`)
   }
 }
-handler.help = ['انشاء-جروب']
+handler.help = ['عمل-جروب']
 handler.tags = ['owner']
-handler.command = /^انشاء-جروب$/
+handler.command = /^عمل-جروب$/
 handler.owner = true
 handler.premium = false
 export default handler

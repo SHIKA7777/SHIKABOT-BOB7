@@ -15,6 +15,6 @@ m.reply(`‌‌   *┇━ 『ترحيب👋🏻ستورم』 ━┇*
 handler.help = ['ترحيب']
 handler.tags = ['المجموعات']
 handler.command = /^(الترحيب|ترحيب)$/i
-handler.admin: true; 
-handler.group: true; 
+
+
 export default handler;
